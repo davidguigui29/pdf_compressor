@@ -1,0 +1,32 @@
+BoxLayout:
+    orientation: 'vertical'
+
+    MDTopAppBar:
+        title: "PDF Compressor"
+        elevation: 10
+
+    MDLabel:
+        text: app.selected_file
+        halign: "center"
+        size_hint_y: None
+        height: dp(40)
+
+    MDRaisedButton:
+        text: "Select PDF"
+        pos_hint: {"center_x": 0.5}
+        on_release: app.show_file_manager()
+
+    MDLabel:
+        text: f"Compression Quality: {app.compression_quality}%"
+        halign: "center"
+
+    MDSlider:
+        min: 10
+        max: 100
+        value: app.compression_quality
+        on_value: app.compression_quality = int(self.value)
+
+    MDRaisedButton:
+        text: "Compress PDF"
+        pos_hint: {"center_x": 0.5}
+        on_release: app.compress_pdf()
